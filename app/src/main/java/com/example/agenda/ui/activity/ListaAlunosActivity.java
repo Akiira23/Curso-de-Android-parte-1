@@ -25,7 +25,7 @@ import static com.example.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
-    public static final String TITULO_APP_BAR = "Lista de alunos";
+    private static final String TITULO_APP_BAR = "Lista de alunos";
     private final AlunoDAO dao = new AlunoDAO();
     private ListaAlunosAdapter adapter;
 
