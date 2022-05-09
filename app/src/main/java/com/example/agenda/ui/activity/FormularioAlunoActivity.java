@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.agenda.R;
-import com.example.agenda.dao.AlunoDAO;
+import com.example.agenda.database.AgendaDatabase;
+import com.example.agenda.database.dao.AlunoDAO;
 import com.example.agenda.model.Aluno;
 
 import static com.example.agenda.ui.activity.ConstantesActivities.CHAVE_ALUNO;
@@ -21,15 +22,18 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     private static final String TITULO_BAR_NOVO_ALUNO = "Novo Aluno";
     private static final String TITULO_BAR_EDITA_ALUNO = "Edita Aluno";
     private EditText campoNome;
+    private EditText campoSobrenome;
     private EditText campoTelefone;
     private EditText campoEmail;
-    private final AlunoDAO dao = new AlunoDAO();
+    private AlunoDAO dao;
     private Aluno aluno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
+        AgendaDatabase database = AgendaDatabase.getInstance(this);
+        dao = database.getRoomAlunoDAO();
 
         inicializacaoDosCampos();
         carregaAluno();
@@ -64,6 +68,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void preencheCampos() {
         campoNome.setText(aluno.getNome());
+        campoSobrenome.setText(aluno.getSobrenome());
         campoTelefone.setText(aluno.getTelefone());
         campoEmail.setText(aluno.getEmail());
     }
@@ -80,6 +85,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void inicializacaoDosCampos() {
         campoNome = findViewById(R.id.activity_formulario_aluno_nome);
+        campoSobrenome = findViewById(R.id.activity_formulario_aluno_sobrenome);
         campoTelefone = findViewById(R.id.activity_formulario_aluno_telefone);
         campoEmail = findViewById(R.id.activity_formulario_aluno_email);
     }
@@ -87,10 +93,12 @@ public class FormularioAlunoActivity extends AppCompatActivity {
 
     private void preencheAluno() {
         String nome = campoNome.getText().toString();
+        String sobrenome = campoSobrenome.getText().toString();
         String telefone = campoTelefone.getText().toString();
         String email = campoEmail.getText().toString();
 
         aluno.setNome(nome);
+        aluno.setSobrenome(sobrenome);
         aluno.setTelefone(telefone);
         aluno.setEmail(email);
     }
