@@ -43,13 +43,6 @@ public class Aluno implements Serializable {
         this.email = email;
     }
 
-    @Ignore
-    public Aluno(String nome, String telefone, String email) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-    }
-
     public String getNome() {
         return nome;
     }
