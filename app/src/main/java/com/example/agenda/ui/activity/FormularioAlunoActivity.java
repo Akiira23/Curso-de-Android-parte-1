@@ -138,7 +138,7 @@ public class FormularioAlunoActivity extends AppCompatActivity {
         }
     }
 
-    private void vinculaAlunoComTelefone(int alunoId, Telefone... telefones) {
+    private void vinculaAlunoComTelefone(int alunoId, Telefone ... telefones) {
         for (Telefone telefone :
                 telefones) {
             telefone.setAlunoId(alunoId);

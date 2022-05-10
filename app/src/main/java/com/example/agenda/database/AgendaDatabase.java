@@ -27,8 +27,8 @@ public abstract class AgendaDatabase extends RoomDatabase {
     public abstract TelefoneDAO getTelefoneDAO();
 
     public static AgendaDatabase getInstance(Context context) {
-        return Room.databaseBuilder(context, AgendaDatabase.class, NOME_BANCO_DE_DADOS)
-                .allowMainThreadQueries()
+        return Room
+                .databaseBuilder(context, AgendaDatabase.class, NOME_BANCO_DE_DADOS)
                 .addMigrations(TODAS_MIGRATIONS)
                 .build();
     }
